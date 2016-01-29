@@ -1,0 +1,27 @@
+.hero-car {
+  position: absolute;
+  bottom: 20px;
+  width: 30%;
+  height: 150px;
+  &.hero-car-normal {
+    background: url('/hero.png') no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+  }
+  &.hero-car-slow {
+    background: url('/heroSlow.png') no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+  }
+  &.hero-car-died {
+    background: url('/heroDied.png') no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+  }
+  &.hero-car-left {
+    left: 15%;
+  }
+  &.hero-car-right {
+    right: 15%;
+  }
+}
