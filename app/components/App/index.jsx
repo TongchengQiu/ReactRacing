@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  changeSpeed
+  startGame
 } from '../../actions';
 
 require('./app.scss');
@@ -18,12 +18,11 @@ class App extends Component {
   }
 
   render() {
-    const { dispatch, speed } = this.props;
-    console.log(speed);
+    const { dispatch, speed, side, status } = this.props;
     return (
-      <div className="app" onClick={() => dispatch(changeSpeed(109))}>
-        <Road status="run" speed="100" />
-        <HeroCar carSide="right" status="run" speed="101" />
+      <div className="app" onClick={() => dispatch(startGame())}>
+        <Road status={status} speed={speed} />
+        <HeroCar carSide={side} status={status} speed={speed} />
       </div>
     );
   }
@@ -31,7 +30,9 @@ class App extends Component {
 
 function select(state) {
   return {
-    speed: state.speed
+    speed: state.speed,
+    side: state.side,
+    status: state.status,
   };
 }
 

@@ -21118,9 +21118,10 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.changeStatus = changeStatus;
-	exports.changeSpeed = changeSpeed;
-	exports.changeSide = changeSide;
+	exports.upSpeed = upSpeed;
+	exports.turnLeft = turnLeft;
+	exports.turnRight = turnRight;
+	exports.startGame = startGame;
 	// 车需要 状态、速度、方向
 	var CHANGE_STATUS = exports.CHANGE_STATUS = 'CHANGE_STATUS';
 	var CHANGE_SPEED = exports.CHANGE_SPEED = 'CHANGE_SPEED';
@@ -21148,6 +21149,36 @@ webpackJsonp([0,1],[
 	  return {
 	    type: 'CHANGE_SIDE',
 	    side: side
+	  };
+	}
+	
+	function upSpeed() {
+	  return function (dispatch, getState) {
+	    return dispatch(changeSpeed(108));
+	  };
+	}
+	function turnLeft() {
+	  return function (dispatch, getState) {
+	    return dispatch(changeSide('left'));
+	  };
+	}
+	function turnRight() {
+	  return function (dispatch, getState) {
+	    return dispatch(changeSide('right'));
+	  };
+	}
+	function startGame() {
+	  return function (dispatch, getState) {
+	    dispatch(changeSide('left'));
+	    dispatch(changeStatus('run'));
+	    dispatch(changeSpeed(1));
+	    var _upSpeedFlag = setInterval(function () {
+	      var _nowSpeed = getState().speed;
+	      if (_nowSpeed >= 198) {
+	        clearInterval(_upSpeedFlag);
+	      }
+	      dispatch(changeSpeed(_nowSpeed + 2));
+	    }, 20);
 	  };
 	}
 
@@ -21209,15 +21240,16 @@ webpackJsonp([0,1],[
 	      var _props = this.props;
 	      var dispatch = _props.dispatch;
 	      var speed = _props.speed;
+	      var side = _props.side;
+	      var status = _props.status;
 	
-	      console.log(speed);
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'app', onClick: function onClick() {
-	            return dispatch((0, _actions.changeSpeed)(109));
+	            return dispatch((0, _actions.startGame)());
 	          } },
-	        _react2.default.createElement(_Road2.default, { status: 'run', speed: '100' }),
-	        _react2.default.createElement(_HeroCar2.default, { carSide: 'right', status: 'run', speed: '101' })
+	        _react2.default.createElement(_Road2.default, { status: status, speed: speed }),
+	        _react2.default.createElement(_HeroCar2.default, { carSide: side, status: status, speed: speed })
 	      );
 	    }
 	  }]);
@@ -21227,7 +21259,9 @@ webpackJsonp([0,1],[
 	
 	function select(state) {
 	  return {
-	    speed: state.speed
+	    speed: state.speed,
+	    side: state.side,
+	    status: state.status
 	  };
 	}
 	
