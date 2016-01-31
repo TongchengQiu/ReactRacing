@@ -3,6 +3,7 @@
   bottom: 20px;
   width: 30%;
   height: 150px;
+  transition: all .4s;
   &.hero-car-normal {
     background: url('/hero.png') no-repeat;
     background-position: center;
@@ -19,9 +20,11 @@
     background-size: auto 100%;
   }
   &.hero-car-left {
-    left: 15%;
+    // left: 15%;
+    transform: translateX(50%);
   }
   &.hero-car-right {
-    right: 15%;
+    // right: 15%;
+    transform: translateX(180%);
   }
 }

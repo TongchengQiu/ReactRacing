@@ -1,0 +1,26 @@
+.btn {
+  position: absolute;
+  width: 200px;
+  height: 56px;
+  left: 50%;
+  margin-left: -100px;
+  top: 50%;
+  margin-top: -80px;
+  cursor: pointer;
+  &.btn-loading {
+    background: url('/startGameBtn.png') no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+  }
+  &.btn-again {
+    background: url('/playAgainBtn.png') no-repeat;
+    background-size: 100% auto;
+    background-position: top center;
+  }
+  &:active {
+    margin-top: -75px;
+  }
+  &.none {
+    display: none;
+  }
+}

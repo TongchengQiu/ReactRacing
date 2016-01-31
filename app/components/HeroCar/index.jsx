@@ -14,6 +14,41 @@ export default class HeroCar extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    window.addEventListener("keydown", this.sideHandleKey.bind(this), false);
+    window.addEventListener("devicemotion", this.sideHandleDevicemotion.bind(this), false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.sideHandleKey.bind(this), false);
+    window.removeEventListener("devicemotion", this.sideHandleDevicemotion.bind(this), false);
+  }
+
+  sideHandleKey(e) {
+    if(this.props.status != 'run') {
+      return false;
+    }
+    switch(e.keyCode){
+      case 37:
+        this.props.turnLeft();
+        break;
+      case 39:
+        this.props.turnRight();
+        break;
+    }
+  }
+
+  sideHandleDevicemotion(e) {
+    var eventaccelerationIncludingGravity = e.accelerationIncludingGravity;
+    if(this.props.status != 'run'){
+      if(eventaccelerationIncludingGravity.x < -1){
+        this.props.turnLeft();
+      }else if(eventaccelerationIncludingGravity.x > 1){
+        this.props.turnRight();
+      }
+    }
+  }
+
   render() {
     let {status, speed, carSide} = this.props;
     let _carStatus = 'normal';
