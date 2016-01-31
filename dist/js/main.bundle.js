@@ -16,13 +16,13 @@ webpackJsonp([0,1],[
 	
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 	
-	var _App = __webpack_require__(179);
+	var _App = __webpack_require__(181);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	__webpack_require__(195);
+	__webpack_require__(197);
 	
 	var store = (0, _configureStore2.default)();
 	
@@ -20839,7 +20839,7 @@ webpackJsonp([0,1],[
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
-	var _reducers = __webpack_require__(197);
+	var _reducers = __webpack_require__(179);
 	
 	var _reducers2 = _interopRequireDefault(_reducers);
 	
@@ -21075,6 +21075,88 @@ webpackJsonp([0,1],[
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initState : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _actions.CHANGE_STATUS:
+	      return Object.assign({}, state, {
+	        status: action.status
+	      });
+	    case _actions.CHANGE_SPEED:
+	      return Object.assign({}, state, {
+	        speed: action.speed
+	      });
+	    case _actions.CHANGE_SIDE:
+	      return Object.assign({}, state, {
+	        side: action.side
+	      });
+	    default:
+	      return state;
+	  }
+	};
+	
+	var _actions = __webpack_require__(180);
+	
+	var initState = {
+	  speed: 0,
+	  status: 'loading',
+	  side: 'left'
+	};
+
+/***/ },
+/* 180 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.changeStatus = changeStatus;
+	exports.changeSpeed = changeSpeed;
+	exports.changeSide = changeSide;
+	// 车需要 状态、速度、方向
+	var CHANGE_STATUS = exports.CHANGE_STATUS = 'CHANGE_STATUS';
+	var CHANGE_SPEED = exports.CHANGE_SPEED = 'CHANGE_SPEED';
+	var CHANGE_SIDE = exports.CHANGE_SIDE = 'CHANGE_SIDE';
+	
+	// 改变状态
+	// string: 'loading', 'stop', 'run'
+	function changeStatus(status) {
+	  return {
+	    type: 'CHANGE_STATUS',
+	    status: status
+	  };
+	}
+	// 改变速度
+	// num: [0, 300]
+	function changeSpeed(speed) {
+	  return {
+	    type: 'CHANGE_SPEED',
+	    speed: speed
+	  };
+	}
+	// 改变方向
+	// string: 'left' , 'right'
+	function changeSide(side) {
+	  return {
+	    type: 'CHANGE_SIDE',
+	    side: side
+	  };
+	}
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -21087,13 +21169,13 @@ webpackJsonp([0,1],[
 	
 	var _reactRedux = __webpack_require__(159);
 	
-	var _actions = __webpack_require__(198);
+	var _actions = __webpack_require__(180);
 	
-	var _Road = __webpack_require__(180);
+	var _Road = __webpack_require__(182);
 	
 	var _Road2 = _interopRequireDefault(_Road);
 	
-	var _HeroCar = __webpack_require__(187);
+	var _HeroCar = __webpack_require__(189);
 	
 	var _HeroCar2 = _interopRequireDefault(_HeroCar);
 	
@@ -21105,7 +21187,7 @@ webpackJsonp([0,1],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(193);
+	__webpack_require__(195);
 	
 	var App = function (_Component) {
 	  _inherits(App, _Component);
@@ -21152,7 +21234,7 @@ webpackJsonp([0,1],[
 	exports.default = (0, _reactRedux.connect)(select)(App);
 
 /***/ },
-/* 180 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21175,7 +21257,7 @@ webpackJsonp([0,1],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(181);
+	__webpack_require__(183);
 	
 	/**
 	 * props:
@@ -21218,16 +21300,16 @@ webpackJsonp([0,1],[
 	exports.default = Road;
 
 /***/ },
-/* 181 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(182);
+	var content = __webpack_require__(184);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(186)(content, {});
+	var update = __webpack_require__(188)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -21244,21 +21326,21 @@ webpackJsonp([0,1],[
 	}
 
 /***/ },
-/* 182 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(183)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".road {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n  overflow: hidden;\n}\n\n.road .road-cont {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.road .road-cont.road-run {\n  height: 200%;\n  background: url(" + __webpack_require__(184) + ");\n  background-size: 100% 50%;\n  background-position: bottom center;\n  background-repeat: repeat-y;\n  transform: translateZ(0);\n  animation: roadRun 10s linear infinite;\n  top: -100%;\n}\n\n@keyframes roadRun {\n  100% {\n    transform: translateY(50%);\n  }\n}\n\n.road .road-cont.road-loading {\n  background: url(" + __webpack_require__(185) + ");\n  background-size: 100% 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n.road .road-cont.road-stop {\n  background: url(" + __webpack_require__(184) + ");\n  background-size: 100% 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}", ""]);
+	exports.push([module.id, ".road {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n  overflow: hidden;\n}\n\n.road .road-cont {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n\n.road .road-cont.road-run {\n  height: 200%;\n  background: url(" + __webpack_require__(186) + ");\n  background-size: 100% 50%;\n  background-position: bottom center;\n  background-repeat: repeat-y;\n  transform: translateZ(0);\n  animation: roadRun 10s linear infinite;\n  top: -100%;\n}\n\n@keyframes roadRun {\n  100% {\n    transform: translateY(50%);\n  }\n}\n\n.road .road-cont.road-loading {\n  background: url(" + __webpack_require__(187) + ");\n  background-size: 100% 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n\n.road .road-cont.road-stop {\n  background: url(" + __webpack_require__(186) + ");\n  background-size: 100% 100%;\n  background-position: center;\n  background-repeat: no-repeat;\n}", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 183 */
+/* 185 */
 /***/ function(module, exports) {
 
 	/*
@@ -21314,19 +21396,19 @@ webpackJsonp([0,1],[
 
 
 /***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "images/bg.png";
 
 /***/ },
-/* 185 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "images/loadingBg.png";
 
 /***/ },
-/* 186 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -21580,7 +21662,7 @@ webpackJsonp([0,1],[
 
 
 /***/ },
-/* 187 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21603,7 +21685,7 @@ webpackJsonp([0,1],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(188);
+	__webpack_require__(190);
 	
 	/**
 	 * props:
@@ -21652,16 +21734,16 @@ webpackJsonp([0,1],[
 	exports.default = HeroCar;
 
 /***/ },
-/* 188 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(189);
+	var content = __webpack_require__(191);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(186)(content, {});
+	var update = __webpack_require__(188)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -21678,48 +21760,48 @@ webpackJsonp([0,1],[
 	}
 
 /***/ },
-/* 189 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(183)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".hero-car {\n  position: absolute;\n  bottom: 20px;\n  width: 30%;\n  height: 150px;\n}\n\n.hero-car.hero-car-normal {\n  background: url(" + __webpack_require__(190) + ") no-repeat;\n  background-position: center;\n  background-size: auto 100%;\n}\n\n.hero-car.hero-car-slow {\n  background: url(" + __webpack_require__(191) + ") no-repeat;\n  background-position: center;\n  background-size: auto 100%;\n}\n\n.hero-car.hero-car-died {\n  background: url(" + __webpack_require__(192) + ") no-repeat;\n  background-position: center;\n  background-size: auto 100%;\n}\n\n.hero-car.hero-car-left {\n  left: 15%;\n}\n\n.hero-car.hero-car-right {\n  right: 15%;\n}", ""]);
+	exports.push([module.id, ".hero-car {\n  position: absolute;\n  bottom: 20px;\n  width: 30%;\n  height: 150px;\n}\n\n.hero-car.hero-car-normal {\n  background: url(" + __webpack_require__(192) + ") no-repeat;\n  background-position: center;\n  background-size: auto 100%;\n}\n\n.hero-car.hero-car-slow {\n  background: url(" + __webpack_require__(193) + ") no-repeat;\n  background-position: center;\n  background-size: auto 100%;\n}\n\n.hero-car.hero-car-died {\n  background: url(" + __webpack_require__(194) + ") no-repeat;\n  background-position: center;\n  background-size: auto 100%;\n}\n\n.hero-car.hero-car-left {\n  left: 15%;\n}\n\n.hero-car.hero-car-right {\n  right: 15%;\n}", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 190 */
+/* 192 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAACiCAYAAADWS0q/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3NpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1YTNlNWM0NS0wZmE3LTQ1NmUtOTQ3Zi01ZTFiNGM5NDM5ZWIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzY0MkExMDA3MjZGMTFFNDhGM0Y4RDg3OUU1NDA4QTEiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzY0MkEwRkY3MjZGMTFFNDhGM0Y4RDg3OUU1NDA4QTEiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MGJmMzcyM2ItMDRlMi00YmNlLThmODYtM2RlZmUzMWVhY2ZlIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjVhM2U1YzQ1LTBmYTctNDU2ZS05NDdmLTVlMWI0Yzk0MzllYiIvPiA8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"
 
 /***/ },
-/* 191 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "images/heroSlow.png";
 
 /***/ },
-/* 192 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "images/heroDied.png";
 
 /***/ },
-/* 193 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(194);
+	var content = __webpack_require__(196);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(186)(content, {});
+	var update = __webpack_require__(188)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -21736,10 +21818,10 @@ webpackJsonp([0,1],[
 	}
 
 /***/ },
-/* 194 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(183)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 	
 	
@@ -21750,16 +21832,16 @@ webpackJsonp([0,1],[
 
 
 /***/ },
-/* 195 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(196);
+	var content = __webpack_require__(198);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(186)(content, {});
+	var update = __webpack_require__(188)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -21776,10 +21858,10 @@ webpackJsonp([0,1],[
 	}
 
 /***/ },
-/* 196 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(183)();
+	exports = module.exports = __webpack_require__(185)();
 	// imports
 	
 	
@@ -21788,53 +21870,6 @@ webpackJsonp([0,1],[
 	
 	// exports
 
-
-/***/ },
-/* 197 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	exports.default = function () {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? {
-	    speed: 0
-	  } : arguments[0];
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case _actions.CHANGE_SPEED:
-	      return Object.assign({}, state, {
-	        speed: action.speed
-	      });
-	    default:
-	      return state;
-	  }
-	};
-	
-	var _actions = __webpack_require__(198);
-
-/***/ },
-/* 198 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.changeSpeed = changeSpeed;
-	var CHANGE_SPEED = exports.CHANGE_SPEED = 'CHANGE_SPEED';
-	
-	function changeSpeed(speed) {
-	  return {
-	    type: 'CHANGE_SPEED',
-	    speed: speed
-	  };
-	}
 
 /***/ }
 ]);
