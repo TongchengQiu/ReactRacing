@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  changeSpeed
+} from '../../actions';
 
 require('./app.scss');
 
 import Road from '../Road';
 import HeroCar from '../HeroCar';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,11 +18,21 @@ export default class App extends Component {
   }
 
   render() {
+    const { dispatch, speed } = this.props;
+    console.log(speed);
     return (
-      <div className="app">
+      <div className="app" onClick={() => dispatch(changeSpeed(109))}>
         <Road status="run" speed="100" />
         <HeroCar carSide="right" status="run" speed="101" />
       </div>
     );
   }
 }
+
+function select(state) {
+  return {
+    speed: state.speed
+  };
+}
+
+export default connect(select)(App);
